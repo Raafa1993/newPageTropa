@@ -1,0 +1,77 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --primary: #393452;
+}
+
+/* @font-face {
+  font-family: "chaney";
+  src: url("/fonts/CHANEY/CHANEY-Extended.otf");
+  font-style: normal;
+  font-weight: normal;
+} */
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: url("assets/imageHome.jpeg");
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+
+  transition: all 0.3s;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
+
+  width: 100%;
+  height: 100vh;
+}
+
+.contentDays {
+  display: flex;
+  align-items: center;
+
+  border: 3px solid #d8bca9;
+  border-radius: 8px;
+  padding: 14px 22px;
+}
+
+.contentDays h2 {
+    font-family: 'chaney';
+    font-size: 18px;
+    color: #d8bca9;
+}
+
+.contentDays span {
+    font-family: 'chaney';
+    color: #c06141;
+    font-size: 18px;
+}
+
+h1 {
+    font-family: 'chaney';
+    color: #d8bca9;
+    font-size: 32px;
+}
