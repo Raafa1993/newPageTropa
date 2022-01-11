@@ -28,6 +28,13 @@ button {
   cursor: pointer;
 }
 
+@font-face {
+  font-family: "chaney";
+  src: url("/fonts/CHANEY/CHANEY-Extended.otf");
+  font-style: normal;
+  font-weight: normal;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -47,6 +54,7 @@ button {
   border-radius: 8px;
   padding: 14px 22px;
   margin-bottom: -250px;
+  background-color: #351d1499;
 }
 
 .contentDays h2 {
@@ -59,10 +67,4 @@ button {
   font-family: "chaney";
   color: #c06141;
   font-size: 18px;
-}
-
-.title {
-  font-family: "chaney";
-  color: #d8bca9;
-  font-size: 60px;
 }
