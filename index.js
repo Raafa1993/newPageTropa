@@ -1,61 +1,46 @@
-// function startTimer(duration, display) {
-//     var timer = duration, minutes, seconds;
-//     setInterval(function () {
-//         minutes = parseInt(timer / 60, 10);
-//         seconds = parseInt(timer % 60, 10);
-//         minutes = minutes < 10 ? "0" + minutes : minutes;
-//         seconds = seconds < 10 ? "0" + seconds : seconds;
-//         display.textContent = minutes + ":" + seconds;
-//         if (--timer < 0) {
-//             timer = duration;
-//         }
-//     }, 1000);
-// }
-// window.onload = function () {
-//     var duration = 60 * 5; // Converter para segundos
-//         display = document.querySelector('#timer'); // selecionando o timer
-//     startTimer(duration, display); // iniciando o timer
-// };
+'use strict';
 
-const secondsContainer = document.querySelector('#seconds');
-const minutesContainer = document.querySelector('#minutes');
-const hoursContainer = document.querySelector('#hours');
-const daysContainer = document.querySelector('#days');
-const nextYearContainer = document.querySelector('#year');
-const spinnerLoading = document.querySelector('#loading');
-const countDownContainer = document.querySelector('#countDown');
+const formatarDigito = (digito) => `0${digito}`.slice(-2);
 
-const nextYear = new Date().getFullYear() + 1
-const newYearTime = new Date(`january 25 ${nextYear} 00:00:00`)
+const atualizar = (tempo) => {
+    // const segundos = document.getElementById('segundos');
+    // const minutos = document.getElementById('minutos');
+    const horas = document.getElementById('horas');
+    const dias = document.getElementById('dias');
 
-nextYearContainer.textContent = nextYear
+    const qtdSegundos = tempo % 60;
+    const qtdMinutos = Math.floor((tempo % (60 * 60)) / 60);
+    const qtdHoras = Math.floor((tempo % (60 * 60 * 24)) / (60 * 60));
+    const qtdDias = Math.floor(tempo / (60 * 60 * 24));
 
-console.log('data', hoursContainer)
+    var tempo = {}
+    tempo.segundos = formatarDigito(qtdSegundos);
+    tempo.minutos = formatarDigito(qtdMinutos);
+    tempo.horas = formatarDigito(qtdHoras);
+    tempo.dias = formatarDigito(qtdDias);
 
-
-const getTimeUnit = unit => unit < 10 ? '0' + unit : unit
-
-const insertCountdownValues = ({ days, hours, minutes, seconds }) => {
-    secondsContainer.textContent = getTimeUnit(seconds)
-    minutesContainer.textContent = getTimeUnit(minutes)
-    hoursContainer.textContent = getTimeUnit(hours)
-    daysContainer.textContent = getTimeUnit(days)
+    dias.textContent = tempo.dias
+    horas.textContent = tempo.horas
 }
 
-const updateCountdow = () => {
-    const currentTime = new Date()
-    const difference = newYearTime - currentTime
-    const days = Math.floor(difference / 1000 / 60 / 60 / 24)
-    const hours = Math.floor(difference / 1000 / 60 / 60) % 24
-    const minutes = Math.floor(difference / 1000 / 60) % 60
-    const seconds = Math.floor(difference / 1000) % 60
+const contagemRegressiva = (tempo) => {
+    const pararContagem = () => clearInterval(id);
 
-    insertCountdownValues({ days, hours, minutes, seconds })
+    const contar = () => {
+        if (tempo === 0 ){
+            pararContagem();
+        }
+        atualizar (tempo);
+        tempo--;
+    }
+    const id = setInterval(contar,1000);
 }
 
-const handleCountdownDisplay = () => {
-    spinnerLoading.remove()
-    countDownContainer.style.display = 'flex'
+const tempoRestante = () => {
+    // 1 de janeiro de 1970
+    const dataEvento = new Date ('2022-01-15 20:00:00');
+    const hoje = Date.now();
+    return Math.floor((dataEvento - hoje) / 1000);
 }
 
-setInterval(updateCountdow, 1000)
+contagemRegressiva(tempoRestante());
