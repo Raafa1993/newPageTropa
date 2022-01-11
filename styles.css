@@ -30,7 +30,7 @@ button {
 
 @font-face {
   font-family: "chaney";
-  src: url("/fonts/CHANEY/CHANEY-Extended.otf");
+  src: url("fonts/CHANEY/CHANEY-Extended.otf");
   font-style: normal;
   font-weight: normal;
 }
